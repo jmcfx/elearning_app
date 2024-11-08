@@ -142,14 +142,17 @@ Widget forgotPassword() {
 
 // custom Login And Reg Button func widget ......
 Widget customLoginAndRegButton(
-    {required BuildContext context, required String buttonName}) {
+    {required BuildContext context, required String buttonName, required  VoidCallback? onTap }) {
   return GestureDetector(
-    onTap: () {},
+    onTap: onTap,
     child: Container(
       width: MediaQuery.of(context).size.width * .88.w,
       height: 68.h,
       margin: EdgeInsets.only(
-          left: 25.w, right: 25.w, top: buttonName == "Log In" ? 50.h : 20.h),
+        left: 25.w,
+        right: 25.w,
+        top: buttonName == "Log In" ? 50.h : 20.h,
+      ),
       decoration: BoxDecoration(
         color: buttonName == "Log In"
             ? AppColors.primaryElement

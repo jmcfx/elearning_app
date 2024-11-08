@@ -60,10 +60,14 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             customLoginAndRegButton(
+              onTap: () {
+               Navigator.of(context).popAndPushNamed("homePage");
+              },
               context: context,
               buttonName: "Log In",
             ),
             customLoginAndRegButton(
+              onTap: () {},
               context: context,
               buttonName: "Sign In",
             ),

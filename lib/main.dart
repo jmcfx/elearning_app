@@ -31,14 +31,13 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
-                appBarTheme: AppBarTheme(
-                  elevation: 0,
-                  backgroundColor: Colors.white
-                ),
+                appBarTheme:
+                    AppBarTheme(elevation: 0, backgroundColor: Colors.white),
               ),
               home: const Welcome(),
               routes: {
-                "signIn" : (context)=> const SignIn(),
+                "signIn": (context) => const SignIn(),
+                "homePage": (context) => const HomePage(),
               },
             );
           },
@@ -46,3 +45,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Scaffold(
+        appBar: AppBar(),
+      ),
+    );
+  }
+}
