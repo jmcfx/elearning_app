@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ Widget _page(
         ),
       ),
       Container(
-       margin: EdgeInsets.only(bottom: 10.h),
+        margin: EdgeInsets.only(bottom: 10.h),
         child: Text(
           title,
           style: TextStyle(

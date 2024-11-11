@@ -5,21 +5,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 //SignIn Bloc...
 class SignInBloc extends Bloc<SignInEvent, SignInStates> {
   SignInBloc() : super(SignInStates()) {
-    
-   //email Event Handler
+    //email Event Handler
     on<EmailEvent>(_emailEvent);
-   //password event Handler...
+
+    //password event Handler...
     on<PasswordEvent>(_passwordEvent);
   }
 
 // email Event Handler func....
   void _emailEvent(EmailEvent event, Emitter<SignInStates> emit) {
-    emit(state.copyWith(email: event.email));
+    emit(
+      state.copyWith(email: event.email),
+    );
   }
-
 
 // password Event handler....
   void _passwordEvent(PasswordEvent event, Emitter<SignInStates> emit) {
-    emit(state.copyWith(password: event.password));
+    emit(
+      state.copyWith(
+        password: event.password,
+      ),
+    );
   }
 }

@@ -68,57 +68,71 @@ Widget reusableText({required String text}) {
 }
 
 // singIn Form widget func ......
-Widget customTextField(
-    {required BuildContext context,
-    required String hintText,
-    required String textType,
-    required String iconName}) {
+Widget customTextFormField({
+  required BuildContext context,
+  required String hintText,
+  required String textType,
+  required String iconName,
+  required void Function(String value)? func,
+  FormFieldValidator<String?>? validator,
+}) {
   return Container(
     width: MediaQuery.of(context).size.width * .90.w,
-    height: 64.h,
     margin: EdgeInsets.only(bottom: 30.h),
-    decoration: BoxDecoration(
-      border: Border.all(color: AppColors.primaryFourthElementText),
-      borderRadius: BorderRadius.all(Radius.circular(15.w)),
-    ),
-    child: Row(
-      children: [
-        Container(
+    decoration: BoxDecoration(),
+    child: TextFormField(
+      
+      onChanged: func,
+      validator: validator,
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(20.r),
+        hintText: hintText,
+        suffix: SizedBox(
+          height: 20,
+        ),
+        prefixIcon: Container(
           width: 20.w,
           height: 20.w,
-          margin: EdgeInsets.only(left: 17.w),
-          child: Image.asset("assets/icons/$iconName.png"),
-        ),
-        Expanded(
-          child: TextField(
-            keyboardType: TextInputType.multiline,
-            decoration: InputDecoration(
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              hintStyle:
-                  TextStyle(color: AppColors.primarySecondaryElementText),
-            ),
-            style: TextStyle(
-                color: AppColors.primaryText,
-                fontFamily: "Avenir",
-                fontWeight: FontWeight.normal),
-            autocorrect: false,
-            obscureText: textType == "password" ? true : false,
+          margin: EdgeInsets.only(
+            left: 17.w,
+            right: 10.w,
           ),
-        )
-      ],
+          child: Image.asset(
+            "assets/icons/$iconName.png",
+          ),
+        ),
+        prefixIconConstraints: BoxConstraints.tightFor(
+          width: 50.r,
+          height: 36.r,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primaryFourthElementText),
+          borderRadius: BorderRadius.circular(15.r),  
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primaryFourthElementText),
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primaryFourthElementText),
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primaryElement, width: 2),
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        hintStyle: TextStyle(color: AppColors.primarySecondaryElementText),
+      ),
+      style: TextStyle(
+        color: AppColors.primaryText,
+        fontFamily: "Avenir",
+        fontWeight: FontWeight.normal,
+      ),
+      autocorrect: false,
+      obscureText: textType == "password" ? true : false,
     ),
+    
   );
 }
 
@@ -142,12 +156,14 @@ Widget forgotPassword() {
 
 // custom Login And Reg Button func widget ......
 Widget customLoginAndRegButton(
-    {required BuildContext context, required String buttonName, required  VoidCallback? onTap }) {
+    {required BuildContext context,
+    required String buttonName,
+    required VoidCallback? onTap}) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
       width: MediaQuery.of(context).size.width * .88.w,
-      height: 68.h,
+      height: 64.h,
       margin: EdgeInsets.only(
         left: 25.w,
         right: 25.w,

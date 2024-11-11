@@ -17,7 +17,5 @@ class PasswordEvent extends SignInEvent {
   PasswordEvent({
     required this.password
   });
+
 }
-
-
-
