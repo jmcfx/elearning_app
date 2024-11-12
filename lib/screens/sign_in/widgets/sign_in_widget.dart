@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // AppBar .....
-AppBar buildAppBar() {
+AppBar buildAppBar({ required text}) {
   return AppBar(
     bottom: PreferredSize(
       preferredSize: Size.fromHeight(1.0.sp),
@@ -14,7 +14,7 @@ AppBar buildAppBar() {
       ),
     ),
     title: Text(
-      "Log In",
+      text,
       style: TextStyle(
         color: AppColors.primaryText,
         fontSize: 20.sp,
@@ -86,7 +86,7 @@ Widget customTextFormField({
       validator: validator,
       keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(20.r),
+        contentPadding: EdgeInsets.all(18.r),
         hintText: hintText,
         suffix: SizedBox(
           height: 20,
@@ -158,25 +158,27 @@ Widget forgotPassword() {
 Widget customLoginAndRegButton(
     {required BuildContext context,
     required String buttonName,
-    required VoidCallback? onTap}) {
+     String ? buttonType,
+    required VoidCallback? onTap, 
+    color }) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      width: MediaQuery.of(context).size.width * .88.w,
-      height: 64.h,
+      width: MediaQuery.of(context).size.width * .90.w,
+      height: 61.h,
       margin: EdgeInsets.only(
-        left: 25.w,
+      left: 25.w,
         right: 25.w,
-        top: buttonName == "Log In" ? 50.h : 20.h,
+        top: buttonType == "LogIn" ? 50.h : 20.h,
       ),
       decoration: BoxDecoration(
-        color: buttonName == "Log In"
+        color: buttonType == "LogIn"
             ? AppColors.primaryElement
             : AppColors.primaryBackground,
         borderRadius: BorderRadius.circular(15.w),
         border: Border.all(
           //check for registration button Border...
-          color: buttonName == "Log In"
+          color: buttonName == "LogIn"
               ? Colors.transparent
               : AppColors.primaryFourthElementText,
         ),
@@ -195,7 +197,7 @@ Widget customLoginAndRegButton(
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.normal,
-            color: buttonName == "Log In"
+            color:  buttonType == "LogIn"
                 ? AppColors.primaryBackground
                 : AppColors.primaryText,
           ),

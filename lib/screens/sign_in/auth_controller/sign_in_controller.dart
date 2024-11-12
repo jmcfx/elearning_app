@@ -27,7 +27,7 @@ class SignInController {
           );
 
           if (credential.user == null) {
-            // toastInfo(msg: "You don't exist");
+            toastInfo(msg: "You don't exist");
             return;
           }
           if (!credential.user!.emailVerified) {
@@ -45,7 +45,9 @@ class SignInController {
             //we have error getting user from firebase ...
           }
         } on FirebaseAuthException catch (e) {
-          toastInfo(msg: "$e.code");
+          toastInfo(
+            msg: e.code.toString(),
+          );
         } catch (e) {}
       }
     } catch (e) {}

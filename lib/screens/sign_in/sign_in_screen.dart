@@ -23,7 +23,9 @@ class _SignInScreenState extends State<SignInScreen> {
     return BlocBuilder<SignInBloc, SignInStates>(builder: (context, state) {
       return Scaffold(
         backgroundColor: Colors.white,
-        appBar: buildAppBar(),
+        appBar: buildAppBar(
+          text: "Log In"
+        ),
         body: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -41,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 //form...
                 Container(
                   margin: EdgeInsets.only(top: 50.h),
-                  padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -80,7 +82,6 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              toastInfo(msg: "You need to fill a Password");
                               return "Password cannot be empty";
                             }
                             return null;
@@ -94,22 +95,26 @@ class _SignInScreenState extends State<SignInScreen> {
                     ],
                   ),
                 ),
-                //
+                //Button....
                 customLoginAndRegButton(
-                  onTap: () {
+                  buttonType: 'LogIn',
+                  context: context,
+                  buttonName: "Log In",
+                   onTap: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       SignInController(context: context)
                           .handleSignIn(email: "email", password: "password");
                     }
                   },
-                  context: context,
-                  buttonName: "Log In",
                 ),
-                //
+                //Button
                 customLoginAndRegButton(
-                  onTap: () {},
+                  buttonType: 'SignUp', 
                   context: context,
                   buttonName: "Sign Up",
+                    onTap: () {
+                    Navigator.of(context).pushNamed("signUp");
+                  },
                 ),
               ],
             ),
