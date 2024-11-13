@@ -1,9 +1,9 @@
 import 'package:elearning_app/common/values/colors/colors.dart';
 import 'package:elearning_app/firebase_options.dart';
-import 'package:elearning_app/screens/bloc_providers/bloc_providers.dart';
-import 'package:elearning_app/screens/sign_in/sign_in_screen.dart';
-import 'package:elearning_app/screens/onboarding/welcome_screen.dart';
-import 'package:elearning_app/screens/sign_up/sign_up.dart';
+import 'package:elearning_app/src/app_dashbord/screens/application_screens.dart';
+import 'package:elearning_app/src/bloc_providers/bloc_providers.dart';
+import 'package:elearning_app/src/sign_in/screens/sign_in_screen.dart';
+import 'package:elearning_app/src/sign_up/screens/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                   )
                   ),
             ),
-            home: const WelcomeScreen(),
+            home: ApplicationScreens(),
             routes: {
               "signIn": (context) => const SignInScreen(),
               "signUp": (context) => const SignUp(),
