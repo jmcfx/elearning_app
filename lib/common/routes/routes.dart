@@ -3,11 +3,11 @@ class AppRoutes {
   static const initialRoutes = "/";
 
   //application screen...
-  static const appDashboardRoutes = "/";
+  static const appDashboardRoutes = "dashBoard";
 
   //sign In screen....
-  static const signInRoutes = "/";
+  static const signInRoutes = "signIn";
 
   //sing up screen...
-  static const signUpRoutes = "/";
+  static const signUpRoutes = "signUp";
 }
