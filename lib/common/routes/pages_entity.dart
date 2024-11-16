@@ -1,5 +1,7 @@
-import 'package:elearning_app/common/routes/routes.dart';
-import 'package:elearning_app/src/app_dashbord/screens/application_screens.dart';
+import 'package:elearning_app/src/app_dashboard/bloc/dashboard_bloc.dart';
+
+import 'routes.dart';
+import 'package:elearning_app/src/app_dashboard/screens/dashboard_screens.dart';
 import 'package:elearning_app/src/onboarding/bloc/welcome_blocs.dart';
 import 'package:elearning_app/src/onboarding/screens/welcome_screen.dart';
 import 'package:elearning_app/src/sign_in/bloc/sign_in_bloc.dart';
@@ -24,7 +26,7 @@ class PageEntity {
 // AppPages Class....
 class AppPages {
   static List<PageEntity> routesList = [
-    //welcome...
+    //welcome... The default route is a set route for the welcome screen
     PageEntity(
       route: AppRoutes.initialRoutes,
       screen: const WelcomeScreen(),
@@ -51,8 +53,10 @@ class AppPages {
     //app dashboard....
     PageEntity(
       route: AppRoutes.appDashboardRoutes,
-      screen: const ApplicationScreens(),
-      // bloc: BlocProvider( create: (_) => SignUpBloc()),
+      screen: const DashBoardScreens(),
+      bloc: BlocProvider(
+        create: (_) => DashboardBloc(),
+      ),
     ),
   ];
 

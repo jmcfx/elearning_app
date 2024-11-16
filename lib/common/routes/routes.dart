@@ -1,13 +1,2 @@
-class AppRoutes {
-  // welcome page or on boarding....
-  static const initialRoutes = "/";
-
-  //application screen...
-  static const appDashboardRoutes = "dashBoard";
-
-  //sign In screen....
-  static const signInRoutes = "signIn";
-
-  //sing up screen...
-  static const signUpRoutes = "signUp";
-}
+export "pages_entity.dart";
+export "routes_name.dart";

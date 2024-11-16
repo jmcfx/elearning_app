@@ -114,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   context: context,
                   buttonName: "Sign Up",
                     onTap: () {
-                    Navigator.of(context).pushNamed("signUp");
+                    Navigator.of(context).pushNamed("/signUp", );
                   },
                 ),
               ],

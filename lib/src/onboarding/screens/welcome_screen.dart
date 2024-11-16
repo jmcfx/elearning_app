@@ -25,22 +25,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           return SafeArea(
             child: Center(
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 5.h),
+                padding: EdgeInsets.symmetric(horizontal: 5.h),
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
                     PageView(
                       controller: pageController,
-                      onPageChanged: (pageIndex) {
-                        // Update the State variable first ..
-                        state.page = pageIndex;
+                      onPageChanged: (pageControllerIndex) {
                         // trigger te bloc event and emit a new state.
                         BlocProvider.of<WelcomeBlocs>(context)
-                            .add(WelcomeEvents());
+                            .add(WelcomeEvents(pageIndex: pageControllerIndex));
                       },
                       children: [
                         page(
-                          index: 1,
+                          index: 0,
                           context: context,
                           buttonName: "Next",
                           title: "First see Learning",
@@ -50,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           pageController: pageController,
                         ),
                         page(
-                          index: 2,
+                          index: 1,
                           context: context,
                           buttonName: "Next",
                           title: "Connect With Everyone",
@@ -60,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           pageController: pageController,
                         ),
                         page(
-                          index: 3,
+                          index: 2,
                           context: context,
                           buttonName: "Get Started",
                           title: "Always Fascinated Learning",
@@ -99,5 +97,3 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 }
-
-

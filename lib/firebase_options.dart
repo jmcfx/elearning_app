@@ -28,10 +28,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -51,13 +48,22 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDQLm6SxrdeF9mVhlL4hQz9q53ZCzJxB50',
-    appId: '1:623295372549:android:530ab7997cd5c8ecf22b6c',
+    appId: '1:623295372549:android:fe0fb3cfd8b833ccf22b6c',
     messagingSenderId: '623295372549',
     projectId: 'e-learning-6362f',
     storageBucket: 'e-learning-6362f.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBU2PMU8bvuLVY6w5-AHifk2BB4hxOnJnw',
+    appId: '1:623295372549:ios:b974ab4bbb1e12d9f22b6c',
+    messagingSenderId: '623295372549',
+    projectId: 'e-learning-6362f',
+    storageBucket: 'e-learning-6362f.firebasestorage.app',
+    iosBundleId: 'com.example.elearningApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBU2PMU8bvuLVY6w5-AHifk2BB4hxOnJnw',
     appId: '1:623295372549:ios:b974ab4bbb1e12d9f22b6c',
     messagingSenderId: '623295372549',

@@ -1,4 +1,5 @@
 import 'package:elearning_app/common/routes/pages_entity.dart';
+import 'package:elearning_app/common/routes/routes.dart';
 import 'package:elearning_app/common/values/colors/colors.dart';
 import 'package:elearning_app/firebase_options.dart';
 import 'package:elearning_app/src/bloc_providers/bloc_providers.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        //spread the list of blocProvider....
         ...AppBlocProviders.allBlocProviders,
       ],
       child: ScreenUtilInit(
@@ -36,11 +38,13 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
               appBarTheme: AppBarTheme(
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  iconTheme: IconThemeData(color: AppColors.primaryText)),
+                elevation: 0,
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(color: AppColors.primaryText),
+              ),
             ),
-            onGenerateRoute: AppPages.generateRouteSettings,
+         // home: DashBoardScreens(),
+           onGenerateRoute: AppPages.generateRouteSettings,
           );
         },
       ),

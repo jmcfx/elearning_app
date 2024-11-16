@@ -1,4 +1,4 @@
- //Sign In Event is an abstract class.
+ //Sign In Event is an abstract class. base type for related event...
 abstract class SignInEvent {
   const SignInEvent();
 }

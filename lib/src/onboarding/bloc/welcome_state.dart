@@ -1,7 +1,12 @@
 class WelcomeState {
-  int page;
-  WelcomeState({
-     this.page = 0,
+  final int page;
+  const WelcomeState({
+    this.page = 0,
   });
-  
+
+  WelcomeState copyWith({int? page}) {
+   return WelcomeState(
+      page: page ?? this.page
+    );
+  }
 }

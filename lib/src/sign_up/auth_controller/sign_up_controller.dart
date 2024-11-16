@@ -1,4 +1,3 @@
-
 import 'package:elearning_app/src/sign_up/bloc/sign_up_bloc.dart';
 import 'package:elearning_app/src/widgets/flutter_toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +50,6 @@ class SignUpController {
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(userName);
         toastInfo(msg: "An email has been sent to your registered email.");
-        Navigator.of(context).pop();
       }
     } on FirebaseAuthException catch (e) {
       toastInfo(msg: e.code.toString());

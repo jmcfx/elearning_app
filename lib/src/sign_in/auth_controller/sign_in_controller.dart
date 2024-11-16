@@ -20,38 +20,33 @@ class SignInController {
 
         //try firebase Auth.... assigning the emailAddress & password State to Firebase....
         try {
+          //initialized  signInWithEmail and Password...
           final credential =
               await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailAddress,
             password: password,
           );
-
-          if (credential.user == null) {
-            toastInfo(msg: "You don't exist");
-            return;
-          }
           if (!credential.user!.emailVerified) {
-            toastInfo(msg: "You need to verify your email account");
+            toastInfo(msg: "You need to Verify");
+            await credential.user!.sendEmailVerification();
             return;
           }
-
-          var user = credential.user;
-
-          if (user != null) {
-            //we got verified user from Firebase ...
-          } else {
-            toastInfo(msg: "Currently you are  not a user of this app");
-            return;
-            //we have error getting user from firebase ...
+          if (credential.user != null && credential.user!.emailVerified) {
+           
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil("/dashBoard", (route) => false);
           }
         } on FirebaseAuthException catch (e) {
           toastInfo(
             msg: e.code.toString(),
           );
+        } catch (e) {
+          toastInfo(msg: "Authentication failed. User is null.");
+          return;
         }
       }
     } catch (e) {
-      return;
+      "";
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:elearning_app/common/values/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Page View widget Function.....
@@ -37,36 +38,38 @@ Widget page(
         ),
       ),
       //subtitle...
-       Container(
+      Container(
         margin: EdgeInsets.only(left: 15.w, top: 10.h),
-         child: Text(
+        child: Text(
           subTitle,
           style: TextStyle(
             color: AppColors.primarySecondaryElementText,
             fontSize: 16.sp,
             fontWeight: FontWeight.normal,
           ),
-               ),
-       ),
-      
+        ),
+      ),
+
       //button....
       GestureDetector(
         onTap: () {
-          if (index < 3) {
+          if (index < 2) {
             //animation
             pageController.animateToPage(
-              index,
+              index + 1,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeIn,
             );
           } else {
             //jump to new page...
             Navigator.of(context)
-                .pushNamedAndRemoveUntil("signIn", (route) => false);
+                .pushNamedAndRemoveUntil("/signIn", (route) => false);
           }
         },
         child: Container(
-          margin: EdgeInsets.only(top: 90.h, ),
+          margin: EdgeInsets.only(
+            top: 90.h,
+          ),
           width: MediaQuery.of(context).size.width * .90.w,
           height: 70.h,
           decoration: BoxDecoration(
