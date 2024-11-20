@@ -1,4 +1,5 @@
 import 'package:elearning_app/src/features/app_dashboard/bloc/dashboard_bloc.dart';
+import 'package:elearning_app/src/features/home/bloc/home_blocs.dart';
 import 'package:elearning_app/src/features/onboarding/bloc/welcome_blocs.dart';
 import 'package:elearning_app/src/features/sign_in/bloc/sign_in_bloc.dart';
 import 'package:elearning_app/src/features/sign_up/bloc/sign_up_bloc.dart';
@@ -21,7 +22,9 @@ class AppBlocProviders {
         ),
         BlocProvider(
           create: (create) => DashboardBloc(),
+        ),
+        BlocProvider(
+          create: (create) => HomeBlocs(),
         )
       ];
 }
-

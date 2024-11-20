@@ -1,5 +1,7 @@
 import 'package:elearning_app/global.dart';
 import 'package:elearning_app/src/features/app_dashboard/bloc/dashboard_bloc.dart';
+import 'package:elearning_app/src/features/home/bloc/home_blocs.dart';
+import 'package:elearning_app/src/features/home/home_screen.dart';
 import 'routes.dart';
 import 'package:elearning_app/src/features/app_dashboard/screens/dashboard_screens.dart';
 import 'package:elearning_app/src/features/onboarding/bloc/welcome_blocs.dart';
@@ -56,6 +58,14 @@ class AppPages {
       screen: const DashBoardScreens(),
       bloc: BlocProvider(
         create: (_) => DashboardBloc(),
+      ),
+    ),
+
+    PageEntity(
+      route: AppRoutes.homeRoutes,
+      screen: const HomeScreen(),
+      bloc: BlocProvider(
+        create: (_) => HomeBlocs(),
       ),
     ),
   ];

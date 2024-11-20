@@ -1,6 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:elearning_app/src/common/values/colors/colors.dart';
+import 'package:elearning_app/src/features/home/bloc/home_blocs.dart';
+import 'package:elearning_app/src/features/home/bloc/home_events.dart';
+import 'package:elearning_app/src/features/home/bloc/home_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBar buildHomeAppBar() {
@@ -37,9 +41,11 @@ AppBar buildHomeAppBar() {
 Widget homeText(
     {required String text,
     Color? color = AppColors.primaryText,
-    int top = 21}) {
+    int top = 22}) {
   return Container(
-    margin: EdgeInsets.only(top: top.h),
+    margin: EdgeInsets.only(
+      top: top.h,
+    ),
     child: Text(
       text,
       style: TextStyle(
@@ -54,40 +60,42 @@ Widget homeText(
 //search ....
 Widget customSearchBar(BuildContext context) {
   return Row(
-    // mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       //search bar....
-      SizedBox(
-        //  height: 50.h,
-        width: MediaQuery.of(context).size.width * 0.75.h,
-        child: SearchBar(
-          padding: WidgetStatePropertyAll(EdgeInsets.all(5.r)),
-          hintText: "search for courses..",
-          backgroundColor: WidgetStatePropertyAll(AppColors.primaryBackground),
-          elevation: WidgetStatePropertyAll(0),
-          leading: Padding(
-            padding: EdgeInsets.only(left: 15.w),
-            child: Image.asset(
-              "assets/icons/search.png",
-              height: 20.h,
-              width: 20.w,
+      Expanded(
+        child: SizedBox(
+          height: 50.h,
+          child: SearchBar(
+            padding: WidgetStatePropertyAll(EdgeInsets.all(5.r)),
+            hintText: "search for courses..",
+            backgroundColor:
+                WidgetStatePropertyAll(AppColors.primaryBackground),
+            elevation: WidgetStatePropertyAll(0),
+            leading: Padding(
+              padding: EdgeInsets.only(left: 15.w),
+              child: Image.asset(
+                "assets/icons/search.png",
+                height: 20.h,
+                width: 20.w,
+              ),
             ),
-          ),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15).r,
-              side: BorderSide(color: AppColors.primaryFourthElementText),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20).r,
+                side: BorderSide(color: AppColors.primaryFourthElementText),
+              ),
             ),
           ),
         ),
       ),
       //image....
       SizedBox(
-        width: 10.w,
+        width: 20,
       ),
       GestureDetector(
         child: Container(
-          width: MediaQuery.of(context).size.width * .10.w,
+          width: MediaQuery.of(context).size.width * .11.w,
           height: 50.w,
           decoration: BoxDecoration(
               color: AppColors.primaryElement,
@@ -101,14 +109,17 @@ Widget customSearchBar(BuildContext context) {
 }
 
 //slider View ....
-Widget sliderView(BuildContext context) {
+Widget sliderView({required BuildContext context, required HomeStates state}) {
   return Column(
     children: [
       Container(
-        margin: EdgeInsets.only(top: 22.h),
-        width: MediaQuery.of(context).size.width * 0.85.w,
-        height: 165.h,
+        margin: EdgeInsets.only(top: 30.h),
+        // width: MediaQuery.of(context).size.width * 0.80.w,
+        height: 170.h,
         child: PageView(
+          onPageChanged: (value) {
+            context.read<HomeBlocs>().add(HomePageDotsEvents(index: value));
+          },
           children: [
             _sliderContainer(context: context),
             _sliderContainer(
@@ -118,20 +129,18 @@ Widget sliderView(BuildContext context) {
         ),
       ),
       //dots indicator .....
-
       Container(
         margin: EdgeInsets.only(top: 10.h),
         child: DotsIndicator(
-          onTap: (value){},
           dotsCount: 3,
-          position: 1,
+          position: state.index,
           decorator: DotsDecorator(
             color: AppColors.primaryThirdElementText,
             activeColor: AppColors.primaryElement,
             size: Size.square(6.0),
             activeSize: Size(20.0, 6.0),
             activeShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0.r),
+              borderRadius: BorderRadius.circular(5.0.r),
             ),
           ),
         ),
@@ -146,7 +155,6 @@ Widget _sliderContainer({
   String path = "assets/icons/Art.png",
 }) {
   return Container(
-    width: MediaQuery.of(context).size.width * 0.80.w,
     decoration: BoxDecoration(
       image: DecorationImage(image: AssetImage(path), fit: BoxFit.fill),
       borderRadius: BorderRadius.circular(20.h),
@@ -154,5 +162,34 @@ Widget _sliderContainer({
   );
 }
 
-//dot indicator ....
+//menu View for Showing items ....
+Widget menuView({
+  required BuildContext context,
+  Color color = AppColors.primaryText,
+  int top = 20,
+}) {
+  return Container(
+    margin: EdgeInsets.only(top: top.h),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _reusableText(text: "Choose your course"),
+        _reusableText(text: "see all"),
+      ],
+    ),
+  );
+}
 
+// reusable text ........
+Widget _reusableText({required String text}) {
+  return Container(
+    child: Text(
+      text,
+      style: TextStyle(
+        color: AppColors.primaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 18.sp,
+      ),
+    ),
+  );
+}
